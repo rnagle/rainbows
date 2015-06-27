@@ -1,4 +1,4 @@
-var Rainbows = function(container, duration, interval) {
+var Rainbows = function(container, speed, size) {
     var $ = jQuery,
         self = this;
 
@@ -33,7 +33,7 @@ var Rainbows = function(container, duration, interval) {
         size = size || 15;
         style = "<style>";
         animation = "animation: color-change " + duration + "s infinite; ";
-        style += "span.rainbow { ";
+        style += container + " span.rainbow { ";
         style += animation;
         style += "-moz-" + animation;
         style += "-webkit-" + animation;
@@ -41,7 +41,7 @@ var Rainbows = function(container, duration, interval) {
         style += "-o-" + animation;
         style += "} ";
         for (x = 1; x <= size; x++) {
-            style += " span.rainbow:nth-child(" + size + "n + " + x;
+            style += container + " span.rainbow:nth-child(" + size + "n + " + x;
             delay = x*duration/size - duration;
             delay = "animation-delay: " + delay + "s; ";
             style += ") { " + delay;
@@ -62,6 +62,6 @@ var Rainbows = function(container, duration, interval) {
     }
     if (typeof container !== 'undefined')
         $(container).html(self.wrap(container));
-        $(container).prepend(self.injectCSS(duration, interval));
+        $(container).prepend(self.injectCSS(speed, size));
     return self;
 };
