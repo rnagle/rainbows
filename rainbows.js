@@ -42,7 +42,7 @@ var Rainbows = function(container, duration, interval) {
         style += "} ";
         for (x = 1; x <= size; x++) {
             style += " span.rainbow:nth-child(" + size + "n + " + x;
-            delay = x*duration/size;
+            delay = x*duration/size - duration;
             delay = "animation-delay: " + delay + "s; ";
             style += ") { " + delay;
             style += "-moz-" + delay;
