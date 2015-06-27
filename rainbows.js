@@ -1,13 +1,6 @@
-var Rainbows = function(container, interval) {
+var Rainbows = function(container, duration, interval) {
     var $ = jQuery,
         self = this;
-
-    self.last_offset = 0;
-
-    self.colors = [
-        'red', 'green', 'yellow', 'blue', 'orange',
-        'purple', 'pink', 'brown', 'black', 'gray', 'white'
-    ];
 
     self.wrap = function(target) {
         var target = $(target),
@@ -23,7 +16,7 @@ var Rainbows = function(container, interval) {
                     if (text[i] == ' ')
                         new_html += " ";
                     else
-                        new_html += "<span>" + text[i] + "</span>";
+                        new_html += "<span class=\"rainbow\">" + text[i] + "</span>";
                 }
                 new_target.append(new_html);
             } else {
@@ -35,27 +28,40 @@ var Rainbows = function(container, interval) {
         return new_target.html();
     };
 
-    self.colorize = function(target, offset) {
-        var colors = $.extend([], self.colors);
-
-        if (typeof offset !== 'undefined')
-            colors = colors.concat(colors.splice(0, offset));
-
-        $(target).find('span').each(function(idx, el) {
-            $(el).attr('class', colors[(idx % colors.length)]);
-        });
-    };
-
-    self.start = function(target, interval) {
-        $(target).html(self.wrap(target));
-        self.intervalId = setInterval(function() {
-            self.colorize(target, self.last_offset);
-            self.last_offset = (self.last_offset + 1) % self.colors.length;
-        }, interval || 500);
-    };
-
+    self.injectCSS = function(duration, size) {
+        duration = duration || 2;
+        size = size || 15;
+        style = "<style>";
+        animation = "animation: color-change " + duration + "s infinite; ";
+        style += "span.rainbow { ";
+        style += animation;
+        style += "-moz-" + animation;
+        style += "-webkit-" + animation;
+        style += "-ms-" + animation;
+        style += "-o-" + animation;
+        style += "} ";
+        for (x = 1; x <= size; x++) {
+            style += " span.rainbow:nth-child(" + size + "n + " + x;
+            delay = x*duration/size;
+            delay = "animation-delay: " + delay + "s; ";
+            style += ") { " + delay;
+            style += "-moz-" + delay;
+            style += "-webkit-" + delay;
+            style += "-ms-" + delay;
+            style += "-o-" + delay;
+            style += "} ";
+        }
+        keyframes = "keyframes color-change { 0% { color: red; } 16% { color: orange; } 33% { color: yellow; } 50% { color: green; } 66% { color: blue; } 83% { color: purple; } 100% { color: red; } } ";
+        style += "@" + keyframes;
+        style += "@-moz-" + keyframes;
+        style += "@-webkit-" + keyframes;
+        style += "@-ms-" + keyframes;
+        style += "@-o-" + keyframes;
+        style += "</style>";
+        return style;
+    }
     if (typeof container !== 'undefined')
-        self.start(container, interval);
-
+        $(container).html(self.wrap(container));
+        $(container).prepend(self.injectCSS(duration, interval));
     return self;
 };
