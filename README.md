@@ -8,7 +8,7 @@ See [bit.ly/1BUkD76](http://bit.ly/1BUkD76) for a demo.
 
 ## Usage:
 
-The `Rainbows` function accepts three arguments: `container`, `speed` and `interval`.
+The `Rainbows` function accepts three arguments: `container`, `speed` and `size`.
 
 For example:
 
