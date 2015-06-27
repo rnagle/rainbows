@@ -13,7 +13,21 @@
         <script type="text/javascript" src="../rainbows.js"></script>
         <script type="text/javascript">
           $(function() {
+              // title, summary
               new Rainbows('.page-title', 2, 10);
+              new Rainbows('#summary p', 2, 10);
+
+              // code blocks
+              new Rainbows('#one pre', 2, 10);
+              new Rainbows('#two pre', 2, 10);
+              new Rainbows('#three pre', 2, 10);
+
+              // sub titles
+              new Rainbows('#one h2', 2, 10);
+              new Rainbows('#two h2', 2, 10);
+              new Rainbows('#three h2', 2, 10);
+
+              // variations
               new Rainbows('#moderate-speed-moderate-size', 2, 10);
               new Rainbows('#low-speed-high-size', 0.25, 25);
               new Rainbows('#high-speed-low-size', 5, 1);
@@ -32,7 +46,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12" id="summary">
                 <div class="page-title">
                     <h1>Rainbows.js</h1>
                 </div>
@@ -40,7 +54,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="one">
             <div class="col-xs-12">
                 <h2>Moderate speed, moderate size</h2>
             </div>
@@ -56,7 +70,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="two">
             <div class="col-xs-12">
                 <h2>Low speed, high size</h2>
             </div>
@@ -72,7 +86,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="three">
             <div class="col-xs-12">
                 <h2>High speed, low size</h2>
             </div>
