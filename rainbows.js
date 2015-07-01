@@ -97,6 +97,7 @@
         this.container.html(this.container.data('originalHTML'));
         this.container.removeData('originalHTML');
         this.container.removeData('rainbows');
+        this.container.attr('data-rainbow-id', null);
         return this;
     };
 
@@ -109,8 +110,6 @@
     /**
      * As a jQuery plugin
      */
-    $.fn.rainbows = [];
-
     $.fn.rainbows = function(options) {
         var settings = $.extend({
             speed: 2,
@@ -118,11 +117,21 @@
         }, (typeof options == 'object')? options : {});
 
         return this.each(function(idx, el) {
-            if (typeof $(el).data('rainbows') == 'undefined')
-                $(el).data('rainbows', new Rainbows(el, settings.speed, settings.size));
+            if (typeof $(el).data('rainbows') == 'undefined') {
+                var speed = $(el).data('speed') || settings.speed,
+                    size = $(el).data('size') || settings.size;
+
+                $(el).data('rainbows', new Rainbows(el, Number(speed), Number(size)));
+            }
 
             if (['start', 'stop'].indexOf(options) >= 0)
                 $(el).data('rainbows')[options]();
         });
     };
+
+    /**
+     * If there are any <rainbow /> or <rainbows /> tags,
+     * rainbow-ify them on document ready.
+     */
+    $(function() { $('rainbow, rainbows').rainbows(); });
 }());
