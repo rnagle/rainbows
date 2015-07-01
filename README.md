@@ -6,9 +6,36 @@ Inspired by such excellent html tags as `marquee` and `blink`.
 
 See [bit.ly/1BUkD76](http://bit.ly/1BUkD76) for a demo.
 
+Requires jQuery.
+
 ## Usage:
 
-The `Rainbows` function accepts three arguments: `container`, `speed` and `size`.
+### As an HTML tag:
+
+Simply include `rainbows.js` on your page and wrap anything you want in a `<rainbow />` tag.
+
+    <rainbow data-speed="2" data-size="15">...</rainbow>
+
+### As a jQuery plugin:
+
+Select elements you want to rainbow-ify:
+
+    $(document).ready(function() {
+        $('body').rainbows();
+    });
+
+Optionally pass speed and size parameters:
+
+    $(document).ready(function() {
+        $('body').rainbows({
+            speed: 2,
+            size: 15
+        });
+    });
+
+### Directly with the `Rainbows` constructor:
+
+`Rainbows` accepts three arguments: `container`, `speed` and `size`.
 
 For example:
 
