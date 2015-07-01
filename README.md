@@ -4,7 +4,7 @@ Make your site's text "pop" with a full rainbow treatment.
 
 Inspired by such excellent html tags as `marquee` and `blink`.
 
-See [bit.ly/1BUkD76](http://bit.ly/1BUkD76) for a demo.
+See [bit.ly/1T3G7mb](bit.ly/1T3G7mb) for a demo.
 
 Requires jQuery.
 
